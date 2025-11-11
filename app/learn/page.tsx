@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabaseClient';
-import Flashcard from '@/components/Flashcard';
+import { supabase } from '../lib/supabaseClient';
+import Flashcard from '../components/Flashcard';
 import { motion } from 'framer-motion';
 
 // 🧩 Función para traer las tarjetas según idioma y nivel
