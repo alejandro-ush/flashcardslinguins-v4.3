@@ -21,7 +21,11 @@ export async function POST(req: Request) {
     input: prompt,
   });
 
-  const text = completion.output[0].content[0].text;
+  const completion = await client.chat.completions.create({
+    model: "gpt-4o-mini",
+    messages: [{ role: "user", content: prompt }],
+  });
+
   try {
     const result = JSON.parse(text);
     return NextResponse.json(result);
