@@ -16,16 +16,13 @@ export async function POST(req: Request) {
   Devuelve un JSON: { "correct": true|false, "explanation": "texto corto con ✅ o ❌" }
   `;
 
-  const completion = await openai.responses.create({
-    model: 'gpt-4.1-mini',
-    input: prompt,
-  });
-
   const completion = await client.chat.completions.create({
     model: "gpt-4o-mini",
     messages: [{ role: "user", content: prompt }],
   });
-
+  
+  const text = completion.choices[0].message.content;
+  
   try {
     const result = JSON.parse(text);
     return NextResponse.json(result);
